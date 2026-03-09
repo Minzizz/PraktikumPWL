@@ -47,7 +47,7 @@ class ProductForm
                             FileUpload::make('image')
                                 ->disk('public')
                                 ->directory('products'),
-                            Checkbox::make('is_active'),
+                            Checkbox::make('is_visible'),
                             Checkbox::make('is_featured'),
                         ]),
                 ])->columnSpanFull()
