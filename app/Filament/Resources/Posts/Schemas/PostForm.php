@@ -32,12 +32,17 @@ class PostForm
                         ->schema([
                             Group::make([
                                 TextInput::make('title')
-                                    ->required()
-                                    ->minLength(5)
-                                    ->maxLength(255),
+                                    ->rules([
+                                        'required',
+                                        'min:3',
+                                        'max:50',
+                                    ]),
                                 TextInput::make('slug')
                                     ->required()
-                                    ->unique(ignoreRecord: true),
+                                    ->unique(ignoreRecord: true)
+                                    ->validationMessages([
+                                        'unique' => 'Slug harus unik dan tidak boleh sama.',
+                                    ]),
                                 Select::make('category_id')
                                     ->label('Category')
                                     ->options(
