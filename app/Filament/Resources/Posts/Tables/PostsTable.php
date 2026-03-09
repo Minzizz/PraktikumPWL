@@ -10,6 +10,7 @@ use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use App\Models\Category;
+use Dom\Text;
 use Filament\Tables\Columns\IconColumn;
 
 class PostsTable
@@ -19,16 +20,27 @@ class PostsTable
         return $table
             ->columns([
                 //
-                TextColumn::make('title'),
-                TextColumn::make('slug'),
-                TextColumn::make('category.name'),
+                TextColumn::make('title')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('slug')
+                    ->sortable()
+                    ->searchable(),
+                TextColumn::make('category.name')
+                    ->sortable()
+                    ->searchable(),
                 ColorColumn::make('color'),
+                TextColumn::make('published_at')
+                    ->label('Published At')
+                    ->dateTime()
+                    ->sortable(),
                 ImageColumn::make('image')
                     ->disk('public'),
                 IconColumn::make('published')
                     ->boolean()
-                    ->label('Tampilkan?'),
-            ])
+                    ->label('Tampilkan?')
+                    ->sortable(),
+            ])->defaultSort('published_at', 'desc')
             ->filters([
                 //
             ])
