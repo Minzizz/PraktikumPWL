@@ -26,7 +26,9 @@ class ProductForm
                             Group::make([
                                 TextInput::make('name')->required(),
 
-                                TextInput::make('sku')->required(),
+                                TextInput::make('sku')
+                                    ->required()
+                                    ->prefixIcon('heroicon-o-bars-4'),
                             ])->columns(2),
                             MarkdownEditor::make('description')
                                 ->columnSpanFull(),
